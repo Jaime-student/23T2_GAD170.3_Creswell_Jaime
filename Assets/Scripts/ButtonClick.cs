@@ -9,6 +9,7 @@ public class ButtonClick : MonoBehaviour
     [SerializeField] private bool isNextPlayerCharacterNextToButton = false;
 
     [SerializeField] private ParticleSystem fire;
+    [SerializeField] private ParticleSystem fireTwo;
 
     // Start is called before the first frame update
 
@@ -24,6 +25,8 @@ public class ButtonClick : MonoBehaviour
             Debug.Log("Flip activated");
 
             fire.gameObject.SetActive(false);
+
+            fireTwo.gameObject.SetActive(false);
           
         }
     }

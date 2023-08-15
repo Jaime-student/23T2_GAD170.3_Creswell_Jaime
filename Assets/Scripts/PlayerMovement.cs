@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -18,9 +19,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float pitchSpeed = 2.0f;
     [SerializeField] private float yawAngle = 0.0f;
     [SerializeField] private float pitchAngle = 0.0f;
+   
 
     // This must be linked to the object that has the "Character Controller" in the inspector. You may need to add this component to the object
-    private CharacterController controller;
+    public CharacterController controller;
     private Vector3 velocity;
 
     // Customisable gravity
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+
         // If the variable "controller" is empty...
         if (controller == null)
         {
@@ -80,5 +83,6 @@ public class PlayerMovement : MonoBehaviour
 
         // Finally, it applies that vector it just made to the character
         controller.Move(move * WalkSpeed * Time.deltaTime + velocity * Time.deltaTime);
+
     }
 }
