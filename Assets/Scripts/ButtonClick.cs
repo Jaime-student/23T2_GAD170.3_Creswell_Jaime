@@ -10,8 +10,12 @@ public class ButtonClick : MonoBehaviour
 
     [SerializeField] private ParticleSystem fire;
     [SerializeField] private ParticleSystem fireTwo;
+    [SerializeField] private GameObject winningLadderPrefab;
+    [SerializeField] private GameObject ladderSpawnPoint ;
+    [SerializeField] private int spawnCounter = 0;
+    public bool objectSpawn = false;
 
-    // Start is called before the first frame update
+    // This first part of code is to detect wen the player clicks E
 
     private void Start()
     {
@@ -20,18 +24,22 @@ public class ButtonClick : MonoBehaviour
 
     private void Update()
     {
+        if (objectSpawn == false)
         if (Input.GetKeyDown(KeyCode.E) && isNextPlayerCharacterNextToButton)
         {
-            Debug.Log("Flip activated");
+            Debug.Log("Button has shut off the fire");
 
             fire.gameObject.SetActive(false);
 
             fireTwo.gameObject.SetActive(false);
-          
+
+            GameObject Ladder = Instantiate(winningLadderPrefab,ladderSpawnPoint.transform.position,ladderSpawnPoint.transform.rotation);
+
+                objectSpawn = true;
         }
     }
 
-
+    // This makes it so the player can only click E when in range of the button
     private void OnTriggerEnter(Collider other)
     {
       

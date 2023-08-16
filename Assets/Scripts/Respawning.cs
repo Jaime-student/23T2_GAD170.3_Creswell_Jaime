@@ -6,26 +6,24 @@ public class Respawning : MonoBehaviour
 {
 
     // spawn point for if the player dies
-    [SerializeField] private bool spawnPoint;
-    [SerializeField] private GameObject playerCharacter;
-    CharacterController playerController;
-    void Start()
+    private CharacterController playerCharacter;
+
+
+
+    // this allows for easy player teleportation/respawning
+    private void OnTriggerEnter(Collider other)
     {
-        spawnPoint = true;
-
-    }
-
-    private void Awake()
-    {
-        playerController = gameObject.GetComponent<CharacterController>(); 
-    }
-
-
-    // this will teleport the player when they die
-    private void OnTriggerEnter()
-    {
-       
-        playerCharacter.gameObject.transform.position = new Vector3(85.18f, 1.73f, 81.5f);
-
+        if (other.gameObject.CompareTag("Player")) ;
+        {
+            playerCharacter = other.GetComponent<CharacterController>();
+            if (playerCharacter != null)
+           {
+                playerCharacter.enabled = false;
+           }
+            Vector3 teleportPosition = new Vector3(94.84f, 12f, 108.68f);
+            other.transform.position = teleportPosition;
+            playerCharacter.enabled = true;
+            Debug.Log("Player has died and has been respawned");
+        }
     }
 }
