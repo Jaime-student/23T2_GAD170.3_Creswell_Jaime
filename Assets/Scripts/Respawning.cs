@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Respawning : MonoBehaviour
 {
 
     // spawn point for if the player dies
     private CharacterController playerCharacter;
-
-
+    [SerializeField] private int respawningTimes = 0;
+    [SerializeField] TextMeshProUGUI respawnNumbers;
 
     // this allows for easy player teleportation/respawning
     private void OnTriggerEnter(Collider other)
@@ -24,6 +25,8 @@ public class Respawning : MonoBehaviour
             other.transform.position = teleportPosition;
             playerCharacter.enabled = true;
             Debug.Log("Player has died and has been respawned");
+            respawningTimes += 1 ;
+            respawnNumbers.text = "you have respawned " + respawningTimes + " times.";
         }
     }
 }

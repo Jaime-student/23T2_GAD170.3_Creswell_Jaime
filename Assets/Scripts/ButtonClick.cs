@@ -10,12 +10,15 @@ public class ButtonClick : MonoBehaviour
 
     [SerializeField] private ParticleSystem fire;
     [SerializeField] private ParticleSystem fireTwo;
+    [SerializeField] private ParticleSystem fireThree;
+    [SerializeField] private ParticleSystem fireFour;
     [SerializeField] private GameObject winningLadderPrefab;
     [SerializeField] private GameObject ladderSpawnPoint ;
     [SerializeField] private int spawnCounter = 0;
     public bool objectSpawn = false;
+    [SerializeField] private AudioSource buttonClick;
 
-    // This first part of code is to detect wen the player clicks E
+    // This first part of code is to detect when the player clicks E
 
     private void Start()
     {
@@ -33,9 +36,15 @@ public class ButtonClick : MonoBehaviour
 
             fireTwo.gameObject.SetActive(false);
 
-            GameObject Ladder = Instantiate(winningLadderPrefab,ladderSpawnPoint.transform.position,ladderSpawnPoint.transform.rotation);
+            fireThree.gameObject.SetActive(false);
+
+            fireFour.gameObject.SetActive(false);
+
+                GameObject Ladder = Instantiate(winningLadderPrefab,ladderSpawnPoint.transform.position,ladderSpawnPoint.transform.rotation);
 
                 objectSpawn = true;
+
+                buttonClick.Play();
         }
     }
 
